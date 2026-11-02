@@ -42,7 +42,8 @@ class Scanner:
                  exclude: Iterable[Path] = ()) -> None:
         self.db = db or SignatureDB()
         self.use_heuristics = use_heuristics
-        self.exclude = [Path(e).resolve() for e in exclude]
+        # The engine's own package holds signature text, so it is skipped by default.
+        self.exclude = [Path(e).resolve() for e in exclude] + [Path(__file__).resolve().parent]
 
     def _excluded(self, path: Path) -> bool:
         resolved = path.resolve()
