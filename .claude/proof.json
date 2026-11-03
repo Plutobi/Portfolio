@@ -1,0 +1,5 @@
+{
+  "checks": [
+    { "name": "test", "run": "cd antivirus && python3 -m unittest discover -s tests" }
+  ]
+}
